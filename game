@@ -1,0 +1,50 @@
+import random
+import art
+
+COMP_NUMBER = random.randint(1,100)
+
+def low_or_hight(guess):
+  """Returns 'Too low', 'Too hight' depending on the user\'s guess value"""
+  result = "Too low."
+  if guess > COMP_NUMBER:
+    result = "Too hight"
+  elif guess < COMP_NUMBER:
+    result = "Too low."
+  return result
+
+def final_result(guess):
+  """Returns final result of the game."""
+  if guess == COMP_NUMBER:
+    result = f"You guessed my number correctly. It was {COMP_NUMBER}. Congratulations! You are able to read minds. \n" + art.giga_chad + art.win
+  else:
+    result = f"You ran out of tries. Unfortunataly you can't read minds. The number was {COMP_NUMBER}:(\n" + art.death + art.lose
+  return result
+
+def mind_reader():
+  
+  print(art.crystal_ball)
+  print(art.mind_reading)
+  print("Wellcome to the Mind Reader, where you can check if you're a Mind Reader!")
+  print("I chose the number from 1 to 100. Can you guess it? ")
+  guess = 0
+  difficulty = input("Choose your difficulty level. Type 'easy' or 'hard' ")
+
+  if difficulty == 'hard':
+    attempts = 5
+  elif difficulty == 'easy':
+    attempts = 10
+  else:
+    attempts = 10
+    print("You don't even know how to type your difficulty level. \nI chose the easy mode for you. :)")
+
+  while attempts > 0:
+    print(f"You have {attempts} attempts left.")
+    guess = int(input("Make a guess: "))
+    if guess == COMP_NUMBER:
+      attempts = 0
+    else:
+      attempts -= 1
+      print(low_or_hight(guess))
+  print(final_result(guess))
+  
+mind_reader()
