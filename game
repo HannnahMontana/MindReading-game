@@ -1,7 +1,9 @@
 import random
 import art
 
-COMP_NUMBER = random.randint(1,100)
+COMP_NUMBER = random.randint(1, 100)
+EASY_ATTEMPTS = 10
+HARD_ATTEMPTS = 5
 
 def low_or_hight(guess):
   """Returns 'Too low', 'Too hight' depending on the user\'s guess value"""
@@ -20,6 +22,17 @@ def final_result(guess):
     result = f"You ran out of tries. Unfortunataly you can't read minds. The number was {COMP_NUMBER}:(\n" + art.death + art.lose
   return result
 
+def set_difficulty():
+  """Return number of attempts you going to have according to your chosen diffixulty level"""
+  difficulty = input("Choose your difficulty level. Type 'easy' or 'hard' ")
+  if difficulty == 'hard':
+    return HARD_ATTEMPTS
+  elif difficulty == 'easy':
+    return EASY_ATTEMPTS
+  else:
+    print("You don't even know how to type your difficulty level. \nI chose the easy mode for you. :)")
+    return EASY_ATTEMPTS
+
 def mind_reader():
   
   print(art.crystal_ball)
@@ -27,15 +40,8 @@ def mind_reader():
   print("Wellcome to the Mind Reader, where you can check if you're a Mind Reader!")
   print("I chose the number from 1 to 100. Can you guess it? ")
   guess = 0
-  difficulty = input("Choose your difficulty level. Type 'easy' or 'hard' ")
 
-  if difficulty == 'hard':
-    attempts = 5
-  elif difficulty == 'easy':
-    attempts = 10
-  else:
-    attempts = 10
-    print("You don't even know how to type your difficulty level. \nI chose the easy mode for you. :)")
+  attempts = set_difficulty()
 
   while attempts > 0:
     print(f"You have {attempts} attempts left.")
